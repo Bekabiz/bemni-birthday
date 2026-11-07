@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday Bemni</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Jost:wght@300;400;500&family=Noto+Serif+Ethiopic:wght@400;600&display=swap">
+<meta property="og:title" content="Happy Birthday Bemni">
+<meta property="og:description" content="One year of living together in Köln. A little diary for your birthday.">
+<meta property="og:image" content="https://bemni-birthday.vercel.app/p/hero.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16100c">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<style>
+/* Layout: one phone-width column, a diary of "pages" from a year in Köln, framed by the gold tilet border of a habesha kemis */
+:root{
+  --bg:#16100c;        /* espresso night */
+  --bg2:#211813;       /* card ground */
+  --cream:#f4e8d4;     /* kemis cotton */
+  --gold:#c9a24a;      /* tilet thread */
+  --gold-hi:#ecd08a;   /* candlelight */
+  --rose:#e08a9a;      /* the pink bag */
+  --muted:#b3a08f;
+  --f-display:"Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --f-script:"Pinyon Script", "Snell Roundhand", cursive;
+  --f-body:"Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-eth:"Noto Serif Ethiopic", "Nyala", "Abyssinica SIL", serif;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--f-body);font-weight:300;font-size:16px;line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+figure{margin:0}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:500}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+
+.wrap{max-width:560px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+
+/* tilet band: gold diamonds and crosses, like the border of her kemis */
+.tilet{height:24px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='24'%3E%3Cg fill='none' stroke='%23c9a24a' stroke-width='1.3'%3E%3Cpath d='M0 2h32M0 22h32'/%3E%3Cpath d='M16 5l7 7-7 7-7-7z'/%3E%3Cpath d='M16 9v6M13 12h6'/%3E%3Cpath d='M0 5l7 7-7 7M32 5l-7 7 7 7'/%3E%3C/g%3E%3Ccircle cx='16' cy='12' r='1.2' fill='%23ecd08a'/%3E%3C/svg%3E") repeat-x center/32px 24px;opacity:.85}
+
+/* ---------- cover ---------- */
+.cover{position:fixed;inset:0;z-index:60;background:radial-gradient(120% 80% at 50% 30%,#2b1f17 0%,var(--bg) 70%);display:grid;place-items:center;text-align:center;padding:calc(24px + env(safe-area-inset-top,0px)) var(--gutter-r) calc(24px + env(safe-area-inset-bottom,0px)) var(--gutter-l);transition:opacity .9s ease, transform .9s ease}
+.cover.gone{opacity:0;transform:scale(1.06);pointer-events:none}
+.cover .frame{width:min(100%,380px);border:1px solid rgba(201,162,74,.5);padding:34px 22px 30px;position:relative;display:grid;gap:18px;justify-items:center}
+.cover .frame::before,.cover .frame::after{content:"";position:absolute;left:0;right:0;height:24px}
+.cover .frame::before{top:-12px}
+.cover .for{font-family:var(--f-body);letter-spacing:.32em;text-transform:uppercase;font-size:11px;color:var(--muted)}
+.cover .name{font-family:var(--f-script);font-size:76px;line-height:1;color:var(--gold-hi)}
+.cover .am{font-family:var(--f-eth);font-size:18px;color:var(--cream)}
+.seal{width:96px;height:96px;border-radius:50%;border:0;cursor:pointer;background:radial-gradient(circle at 35% 30%,#f3d98f,#c9a24a 45%,#8a6a25 100%);box-shadow:0 0 0 6px rgba(201,162,74,.15),0 10px 30px rgba(0,0,0,.5);display:grid;place-items:center;font-family:var(--f-script);font-size:52px;color:#3b2a12;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 6px rgba(201,162,74,.15),0 10px 30px rgba(0,0,0,.5)}50%{box-shadow:0 0 0 16px rgba(201,162,74,.05),0 10px 30px rgba(0,0,0,.5)}}
+.cover .tap{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;max-width:560px;margin:0 auto;min-height:min(92svh,820px);display:flex;align-items:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;animation:kb 18s ease-out both}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,16,12,.15) 0%,rgba(22,16,12,0) 30%,rgba(22,16,12,.55) 58%,var(--bg) 92%)}
+.hero .txt{position:relative;z-index:1;width:100%;padding:0 var(--gutter-r) 28px var(--gutter-l);display:grid;gap:6px}
+.hero .am{font-family:var(--f-eth);font-size:20px;color:var(--gold-hi)}
+.eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:var(--f-display);font-weight:500;font-size:clamp(34px,9vw,44px);line-height:1.05;letter-spacing:.02em}
+.hero .name{font-family:var(--f-script);font-size:clamp(88px,26vw,128px);line-height:.9;color:var(--gold-hi);margin:-4px 0 4px -4px;text-shadow:0 4px 30px rgba(0,0,0,.45)}
+.hero .date{display:flex;gap:14px;align-items:center;font-family:var(--f-display);font-size:19px;color:var(--cream)}
+.hero .date span{display:inline-block;width:34px;height:1px;background:var(--gold)}
+
+/* ---------- intro ---------- */
+.intro{padding-block:26px 8px;display:grid;gap:18px;text-align:center}
+.intro p{font-family:var(--f-display);font-style:italic;font-size:23px;line-height:1.35}
+.intro small{font-size:13px;color:var(--muted);letter-spacing:.06em}
+
+/* ---------- diary page heading ---------- */
+.page{padding-block:54px 8px}
+.ph{display:grid;gap:6px;margin-bottom:22px}
+.ph .num{font-family:var(--f-display);font-style:italic;font-size:15px;color:var(--gold)}
+.ph h2{font-family:var(--f-display);font-size:clamp(34px,10vw,46px);line-height:1;letter-spacing:.01em}
+.ph h2 em{font-family:var(--f-script);font-style:normal;color:var(--gold-hi);font-size:1.15em;font-weight:400}
+.ph p{color:var(--muted);font-size:15px;max-width:42ch}
+.cap{font-family:var(--f-display);font-style:italic;font-size:17px;color:var(--cream);line-height:1.3}
+
+/* reveal: visible at rest, a small lift when it enters */
+.rv{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .rv:not(.in){transform:translateY(22px)}
+
+/* ---------- then & now: stacked polaroids ---------- */
+.stack{display:grid;justify-items:center;padding-block:6px 10px}
+.pol{background:#f6efe2;padding:10px 10px 0;box-shadow:0 18px 40px rgba(0,0,0,.45);width:78%;max-width:340px;cursor:pointer;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.pol img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.pol figcaption{font-family:var(--f-script);color:#3a2a1c;font-size:28px;text-align:center;padding:4px 0 8px;line-height:1.2}
+.stack .pol:nth-child(1){transform:rotate(-5deg) translateX(-8%)}
+.stack .pol:nth-child(2){transform:rotate(4deg) translateX(9%);margin-top:-3%}
+.stack .pol:nth-child(3){transform:rotate(-2deg);margin-top:-3%}
+.pol.lift{transform:rotate(0) scale(1.04)!important;z-index:5;position:relative}
+
+/* ---------- the queen's day ---------- */
+.gilded{border:1px solid var(--gold);padding:7px;position:relative}
+.gilded::before{content:"";position:absolute;inset:3px;border:1px solid rgba(201,162,74,.35);pointer-events:none}
+.gilded img{width:100%}
+.arch{border-radius:999px 999px 6px 6px;overflow:hidden;border:1px solid var(--gold);padding:6px;width:78%;margin:-60px auto 0;position:relative;background:var(--bg)}
+.arch img{border-radius:999px 999px 3px 3px;width:100%;aspect-ratio:3/4.4;object-fit:cover;object-position:50% 20%}
+.queen .cap{text-align:center;margin-top:12px}
+
+/* ---------- köln carousel ---------- */
+.swipe{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.swipe::-webkit-scrollbar{display:none}
+.slide{flex:0 0 80%;scroll-snap-align:center;position:relative;border-radius:4px;overflow:hidden;background:var(--bg2)}
+.slide img{width:100%;aspect-ratio:3/4.3;object-fit:cover}
+.slide figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 14px 12px;background:linear-gradient(transparent,rgba(16,11,8,.85));font-family:var(--f-display);font-style:italic;font-size:19px}
+.hint{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.hint::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+/* ---------- brother & sister collage ---------- */
+.collage{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.collage figure{margin:0;position:relative}
+.collage img{width:100%;height:100%;object-fit:cover;border-radius:3px}
+.collage .tall{grid-row:span 2}
+.collage .wide{grid-column:span 2}
+.collage .wide img{aspect-ratio:4/3}
+.collage .sq img{aspect-ratio:1}
+.tag{position:absolute;left:8px;bottom:8px;background:rgba(22,16,12,.78);border:1px solid rgba(201,162,74,.5);padding:2px 9px;font-size:12px;letter-spacing:.08em;color:var(--gold-hi);border-radius:20px}
+
+/* ---------- carta: playing cards ---------- */
+.felt{background:radial-gradient(120% 90% at 50% 0%,#24402f 0%,#152519 80%);border:1px solid rgba(201,162,74,.35);border-radius:14px;padding:22px 14px 18px}
+.pcard{background:#fbf6ec;border-radius:12px;padding:26px 10px 10px;position:relative;color:#7a1e2c;box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.pcard .idx{position:absolute;font-family:var(--f-display);font-weight:600;font-size:20px;line-height:.95;text-align:center}
+.pcard .idx.tl{top:6px;left:9px}
+.pcard .idx.br{bottom:6px;right:9px;transform:rotate(180deg)}
+.pcard .idx b{display:block;font-size:15px}
+.pcard.black{color:#1d1915}
+.pcard .ph-in{border-radius:6px;overflow:hidden;margin:0 14px 18px;position:relative}
+.big .ph-in img{aspect-ratio:4/3;width:100%;object-fit:cover}
+.hand{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.hand .pcard:first-child{transform:rotate(-3deg)}
+.hand .pcard:last-child{transform:rotate(3deg)}
+.hand .ph-in{margin:0 8px 16px}
+.hand video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}
+.play{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.25);border:0;cursor:pointer}
+.play span{width:54px;height:54px;border-radius:50%;background:rgba(251,246,236,.92);display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.play span::before{content:"";border-left:16px solid #7a1e2c;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.felt .cap{text-align:center;margin-top:16px;color:#e9dcc3}
+
+/* ---------- food: plates ---------- */
+.gursha{border-radius:50%;overflow:hidden;width:86%;margin:0 auto;aspect-ratio:1;border:8px solid #efe3cc;box-shadow:0 0 0 1px var(--gold),0 20px 40px rgba(0,0,0,.5)}
+.gursha img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.plates{display:flex;justify-content:center;gap:10px;margin-top:-18px;position:relative}
+.plate{width:30%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:4px solid #efe3cc;box-shadow:0 0 0 1px var(--gold),0 10px 20px rgba(0,0,0,.5)}
+.plate img{width:100%;height:100%;object-fit:cover}
+.plate:nth-child(2){margin-top:22px}
+.food .cap{text-align:center;margin-top:16px}
+.note{font-size:14px;color:var(--muted);text-align:center;margin-top:6px}
+
+
+/* ---------- chef bemni: menu card ---------- */
+.menu{background:#f6eedf;color:#2d2118;border-radius:4px;padding:10px;box-shadow:0 20px 50px rgba(0,0,0,.5);position:relative}
+.menu::before{content:"";position:absolute;inset:6px;border:1px solid rgba(201,162,74,.7);pointer-events:none;border-radius:2px}
+.menu .feast{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:2px}
+.menu .mh{text-align:center;padding:18px 10px 6px;display:grid;gap:2px}
+.menu .mh .s{font-family:var(--f-script);font-size:48px;line-height:1;color:#8a6a25}
+.menu .mh .k{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7d6a58}
+.menu ul{list-style:none;margin:0;padding:8px 14px 18px;display:grid;gap:10px}
+.menu li{display:flex;align-items:baseline;gap:8px;font-family:var(--f-display);font-size:18px;line-height:1.2}
+.menu li span{flex:1;border-bottom:1px dotted rgba(45,33,24,.4);transform:translateY(-4px);min-width:16px}
+.menu li i{font-style:normal;color:#9a2a3a;font-size:15px}
+.menu li small{display:block;font-family:var(--f-body);font-size:12.5px;color:#7d6a58;margin-top:2px}
+.menu li .t{min-width:0}
+.menu .sp{margin:0 14px 16px;padding:12px 14px;border:1px dashed rgba(138,106,37,.7);border-radius:6px;text-align:center;font-family:var(--f-display);font-style:italic;font-size:18px;color:#5a4636}
+.menu .sp b{display:block;font-style:normal;font-family:var(--f-body);font-weight:500;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#8a6a25;margin-bottom:4px}
+.dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px}
+.dishes figure{position:relative;overflow:hidden;border-radius:3px}
+.dishes img{width:100%;aspect-ratio:1;object-fit:cover;transition:transform .6s ease}
+.dishes figure:active img{transform:scale(1.08)}
+.dishes figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 6px 5px;background:linear-gradient(transparent,rgba(16,11,8,.82));font-size:11.5px;letter-spacing:.04em;color:var(--cream);text-align:center}
+.chef .cap{text-align:center;margin-top:16px}
+
+/* ---------- your 27th ---------- */
+.b27{display:grid;grid-template-columns:1.25fr 1fr;gap:10px;align-items:stretch}
+.b27 figure{border-radius:4px;overflow:hidden}
+.b27 img{width:100%;height:100%;object-fit:cover}
+.b27 .main{grid-row:span 2}
+.b27 .main img{aspect-ratio:3/4.6;object-position:50% 30%}
+.b27 .s img{aspect-ratio:1}
+
+/* ---------- christmas ---------- */
+.xmas{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
+.xmas figure{margin:0;border-radius:4px;overflow:hidden}
+.xmas img{width:100%;height:100%;object-fit:cover}
+.xmas .w{grid-column:span 2}
+.xmas .w img{aspect-ratio:4/3}
+.xmas .t img{aspect-ratio:3/4}
+.twinkle{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(2px 2px at 12% 18%,#fff6d8,transparent),radial-gradient(1.5px 1.5px at 78% 9%,#fff6d8,transparent),radial-gradient(2px 2px at 64% 58%,#fff6d8,transparent),radial-gradient(1.5px 1.5px at 30% 72%,#fff6d8,transparent),radial-gradient(2px 2px at 90% 84%,#fff6d8,transparent);animation:tw 2.6s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.25}to{opacity:1}}
+
+/* ---------- funny corner: polaroids on a string ---------- */
+.line{position:relative;padding-top:18px}
+.line::before{content:"";position:absolute;left:-4%;right:-4%;top:14px;height:30px;border-top:1.5px solid var(--muted);border-radius:50%/100% 100% 0 0;opacity:.6}
+.pegs{display:grid;grid-template-columns:1fr 1fr;gap:26px 14px}
+.peg{background:#f6efe2;padding:8px 8px 0;transform-origin:50% -10px;box-shadow:0 12px 26px rgba(0,0,0,.45);position:relative;cursor:pointer}
+.peg::before{content:"";position:absolute;top:-14px;left:50%;width:10px;height:24px;margin-left:-5px;background:#a5794a;border-radius:2px}
+.peg img{width:100%;aspect-ratio:1;object-fit:cover}
+.peg figcaption{font-family:var(--f-script);color:#3a2a1c;font-size:22px;text-align:center;padding:2px 0 6px;line-height:1.15}
+.peg:nth-child(odd){transform:rotate(-4deg)}
+.peg:nth-child(even){transform:rotate(3deg)}
+.peg.swing{animation:swing 1.2s ease-out}
+@keyframes swing{0%{transform:rotate(0)}20%{transform:rotate(12deg)}40%{transform:rotate(-9deg)}60%{transform:rotate(6deg)}80%{transform:rotate(-3deg)}100%{transform:rotate(0)}}
+
+/* ---------- our people ---------- */
+.people{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.people figure{margin:0;position:relative}
+.people img{width:100%;height:100%;object-fit:cover;border-radius:3px}
+.people .a{grid-column:span 6}.people .a img{aspect-ratio:4/3}
+.people .b{grid-column:span 3}.people .b img{aspect-ratio:3/4}
+.people .c{grid-column:span 2}.people .c img{aspect-ratio:3/4.4}
+
+/* ---------- last days: film strip ---------- */
+.filmbox{position:relative;background:#0c0806;border-radius:4px;padding:22px 0}
+.film{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.film::-webkit-scrollbar{display:none}
+.fr{flex:0 0 72%;scroll-snap-align:center;padding:0 6px;margin:0}
+.fr img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.sprk{position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(90deg,transparent 0 8px,#3a2e25 8px 18px);opacity:.9}
+.sprk.t{top:5px}.sprk.b{bottom:5px}
+.last .cap{margin-top:16px}
+
+/* ---------- wishes ---------- */
+.cake-wrap{display:grid;justify-items:center;gap:16px;padding-top:8px}
+.cake{position:relative;width:220px;height:200px}
+.tier{position:absolute;left:50%;transform:translateX(-50%);border-radius:10px 10px 6px 6px}
+.tier.t1{bottom:0;width:220px;height:78px;background:linear-gradient(#f4e8d4,#e2cfae)}
+.tier.t2{bottom:70px;width:160px;height:62px;background:linear-gradient(#f7eddd,#e6d4b5)}
+.tier.t1::after,.tier.t2::after{content:"";position:absolute;left:0;right:0;top:22px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='14'%3E%3Cpath d='M10 1l6 6-6 6-6-6z' fill='none' stroke='%23c9a24a' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x center/20px 14px}
+.candle{position:absolute;bottom:130px;width:12px;height:46px;background:repeating-linear-gradient(135deg,#f4e8d4 0 6px,#c9a24a 6px 10px);border-radius:3px}
+.candle:nth-child(1){left:72px}.candle:nth-child(2){left:104px;height:54px}.candle:nth-child(3){left:136px}
+.flame{position:absolute;left:50%;top:-24px;width:14px;height:22px;margin-left:-7px;background:radial-gradient(circle at 50% 70%,#fff7d1 0%,#ffd36a 40%,#ff9a3c 75%,transparent 76%);border-radius:50% 50% 45% 45%/60% 60% 40% 40%;animation:flick .25s ease-in-out infinite alternate;filter:drop-shadow(0 0 10px rgba(255,200,90,.9))}
+@keyframes flick{from{transform:rotate(-3deg) scaleY(1)}to{transform:rotate(3deg) scaleY(1.08)}}
+.cake.out .flame{animation:none;opacity:0;transform:scale(.2);transition:all .35s ease}
+.smoke{position:absolute;left:50%;top:-26px;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:rgba(220,210,200,.5);opacity:0}
+.cake.out .smoke{animation:smoke 1.8s ease-out forwards}
+@keyframes smoke{0%{opacity:.8;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-50px) scale(4)}}
+.blow{border:1px solid var(--gold);background:transparent;padding:12px 26px;border-radius:40px;letter-spacing:.18em;text-transform:uppercase;font-size:13px;color:var(--gold-hi);cursor:pointer}
+.blow:active{background:rgba(201,162,74,.12)}
+.wishes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.wish{background:var(--bg2);border:1px solid rgba(201,162,74,.22);border-radius:10px;padding:16px 14px;display:grid;gap:8px;align-content:start;min-width:0;transition:border-color .6s ease, background .6s ease, box-shadow .6s ease}
+.wish svg{width:28px;height:28px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.wish h3{font-family:var(--f-display);font-size:21px;line-height:1.1;color:var(--gold-hi)}
+.wish p{font-size:14px;line-height:1.45;color:var(--cream)}
+.wish.lit{border-color:var(--gold);background:linear-gradient(160deg,#2e2216,var(--bg2));box-shadow:0 0 24px rgba(236,208,138,.18)}
+
+/* ---------- letter ---------- */
+.letter{background:#f6eedf;color:#2d2118;border-radius:4px;padding:30px 22px 26px;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.letter::before{content:"";position:absolute;inset:8px;border:1px solid rgba(201,162,74,.6);pointer-events:none;border-radius:2px}
+.letter .hi{font-family:var(--f-script);font-size:46px;line-height:1;color:#8a6a25;margin-bottom:12px}
+.letter p{font-family:var(--f-display);font-size:19px;line-height:1.5;margin-bottom:12px;max-width:60ch}
+.letter .am{font-family:var(--f-eth);font-size:19px;color:#6b4f1c;margin:16px 0 2px}
+.letter .tr{font-size:13px;color:#7d6a58;font-family:var(--f-body)}
+.letter .sign{font-family:var(--f-script);font-size:36px;color:#8a6a25;margin-top:16px;line-height:1.1}
+.letter .sign small{display:block;font-family:var(--f-display);font-style:italic;font-size:16px;color:#5a4636}
+
+footer{padding-block:40px 110px;text-align:center;display:grid;gap:10px}
+footer .d{font-family:var(--f-display);font-size:17px;color:var(--muted);letter-spacing:.1em}
+footer .n{font-family:var(--f-script);font-size:40px;color:var(--gold-hi)}
+
+
+/* ---------- balloons ---------- */
+#sky{position:fixed;inset:0;z-index:45;pointer-events:none;overflow:hidden}
+.bl{position:absolute;top:100%;border:0;background:none;padding:0;margin:0;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent;animation:rise var(--dur,10s) linear forwards}
+.bl .sw{display:block;transform-origin:50% 10%;animation:sway 2.8s ease-in-out infinite alternate}
+.bl svg{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 12px rgba(0,0,0,.35))}
+.bl.popped .sw{animation:popx .2s ease-out forwards}
+@keyframes rise{from{transform:translate(0,0)}to{transform:translate(var(--dx,0px),calc(-100vh - 220px))}}
+@keyframes sway{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+@keyframes popx{to{transform:scale(1.6);opacity:0}}
+.js .ph.rv:not(.in){transform:translateY(18px) scale(.92)}
+.ph.rv{transition:transform .8s cubic-bezier(.34,1.56,.64,1)}
+
+/* ---------- music player ---------- */
+.player{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100% - 32px);background:rgba(28,20,15,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(201,162,74,.55);border-radius:40px;padding:6px 18px 6px 6px;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+.player button{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 30%,#f3d98f,#c9a24a 60%,#8a6a25);display:grid;place-items:center;cursor:pointer}
+.player .ic{display:none}
+.player.on .eq{display:flex}.player:not(.on) .ic{display:block}
+.eq{display:none;gap:3px;align-items:flex-end;height:15px}
+.eq i{width:3px;height:100%;background:#2b1f12;border-radius:2px;animation:eq .9s ease-in-out infinite alternate}
+.eq i:nth-child(2){animation-delay:-.3s}.eq i:nth-child(3){animation-delay:-.6s}
+@keyframes eq{from{transform:scaleY(.3)}to{transform:scaleY(1)}}
+.eq i{transform-origin:bottom}
+.ly{min-width:0;font-family:var(--f-display);font-style:italic;font-size:17px;line-height:1.2;color:var(--cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .3s ease}
+.ly.dim{opacity:.55}
+.cover .snd{font-size:12px;color:var(--muted);letter-spacing:.08em;margin-top:-8px}
+
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:70}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv:not(.in){transform:none}
+}
+</style>
+</head>
+<body>
+
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div id="sky" aria-hidden="true"></div>
+<audio id="song" src="song.mp3" loop preload="auto"></audio>
+<div class="player" id="player" hidden>
+  <button id="playBtn" aria-label="Pause the birthday song"><span class="eq"><i></i><i></i><i></i></span><svg class="ic" width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="#2b1f12"/></svg></button>
+  <span class="ly" id="lyric">Happy birthday, Bemni</span>
+</div>
+
+<div class="cover" id="cover" role="dialog" aria-label="Birthday surprise">
+  <div class="frame">
+    <div class="tilet" style="position:absolute;top:-12px;left:0;right:0"></div>
+    <p class="for">A little gift for</p>
+    <p class="name">Bemni</p>
+    <p class="am" lang="am">መልካም ልደት</p>
+    <button class="seal" id="openBtn" aria-label="Open your birthday gift">B</button>
+    <p class="tap">Tap the seal to open</p>
+    <p class="snd">Turn your sound on</p>
+    <div class="tilet" style="position:absolute;bottom:-12px;left:0;right:0"></div>
+  </div>
+</div>
+
+<header class="hero">
+  <img src="p/hero.jpg" alt="Bemni in a blue dress under the colourful umbrellas in Köln" fetchpriority="high">
+  <div class="txt">
+    <p class="am" lang="am">መልካም ልደት</p>
+    <p class="eyebrow">Happy 29th Birthday</p>
+    <p class="name">Bemni</p>
+    <p class="date">07 · 11 · 1997 <span></span> 07 · 11 · 2026</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="intro">
+      <div class="tilet"></div>
+      <p>One year of living together in Köln.<br>This is our little diary.</p>
+      <small>Scroll slowly. Tap the photos.</small>
+    </section>
+
+    <!-- Page I -->
+    <section class="page">
+      <div class="ph rv">
+        <span class="num">Page I</span>
+        <h2>Then <em>&amp;</em> now</h2>
+        <p>From the little girl in the flower field to the woman we celebrate today.</p>
+      </div>
+      <div class="stack">
+        <figure class="pol rv"><img src="p/little.jpg" alt="Little Bemni smiling in her white and blue habesha dress in a field of flowers" loading="lazy"><figcaption>Little Bemni</figcaption></figure>
+        <figure class="pol rv"><img src="p/then2017.jpg" alt="Bemni in 2017" loading="lazy" style="object-position:50% 45%"><figcaption>Bemni, 2017</figcaption></figure>
+        <figure class="pol rv"><img src="p/now.jpg" alt="Bemni today" loading="lazy" style="object-position:50% 30%"><figcaption>And now, 29</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- Page II -->
+    <section class="page queen">
+      <div class="ph rv">
+        <span class="num">Page II</span>
+        <h2>The <em>queen</em> in her kemis</h2>
+        <p>White cotton, gold tilet, and everyone you love around you.</p>
+      </div>
+      <div class="gilded rv"><img src="p/kemis.jpg" alt="Bemni in her traditional wedding dress with the bridal party" loading="lazy"></div>
+      <div class="arch rv"><img src="p/wedding.jpg" alt="Bemni in her white wedding dress with Bereket beside her" loading="lazy"></div>
+      <p class="cap">Your big day. I was right there next to you.</p>
+    </section>
+
+    <!-- Page III -->
+    <section class="page">
+      <div class="ph rv">
+        <span class="num">Page III</span>
+        <h2>I <em>love</em> Köln</h2>
+        <p>The city that became our home for one year.</p>
+      </div>
+      <p class="hint" aria-hidden="true">Swipe</p>
+      <div class="swipe" tabindex="0" aria-label="Köln photos, swipe sideways">
+        <figure class="slide"><img src="p/koln1.jpg" alt="Bemni at the I love Köln sign" loading="lazy"><figcaption>I ❤ Köln. Same, Bemni.</figcaption></figure>
+        <figure class="slide"><img src="p/rhein.jpg" alt="Bemni by the Rhine with the cathedral behind her" loading="lazy"><figcaption>The Rhine and the Dom</figcaption></figure>
+        <figure class="slide"><img src="p/pink.jpg" alt="Bemni smiling with a pink bag" loading="lazy"><figcaption>Pink bag season</figcaption></figure>
+        <figure class="slide"><img src="p/zebra.jpg" alt="Bemni in a zebra print shirt on an autumn street" loading="lazy"><figcaption>Autumn fit check</figcaption></figure>
+        <figure class="slide"><img src="p/koln2.jpg" alt="Bemni walking past the I love Köln sign, laughing" loading="lazy"><figcaption>Too fast for the camera</figcaption></figure>
+        <figure class="slide"><img src="p/blue.jpg" alt="Bemni in a blue dress" loading="lazy"><figcaption>Dressed up, just because</figcaption></figure>
+        <figure class="slide"><img src="p/stripes.jpg" alt="Bemni posing at night with hands under her chin" loading="lazy"><figcaption>Night walks</figcaption></figure>
+        <figure class="slide"><img src="p/red.jpg" alt="Bemni under red lights" loading="lazy"><figcaption>Red lights, still glowing</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- Page IV -->
+    <section class="page">
+      <div class="ph rv">
+        <span class="num">Page IV</span>
+        <h2>Brother <em>&amp;</em> sister</h2>
+        <p>Same flat, same jokes, same late nights.</p>
+      </div>
+      <div class="collage">
+        <figure class="tall rv"><img src="p/us-building.jpg" alt="Bemni and Bereket in front of a building" loading="lazy"></figure>
+        <figure class="sq rv"><img src="p/night1.jpg" alt="Bemni and Bereket at night by a church" loading="lazy" style="object-position:50% 70%"></figure>
+        <figure class="sq rv"><img src="p/escalator.jpg" alt="Escalator selfie" loading="lazy"></figure>
+        <figure class="wide rv"><img src="p/supermarket.jpg" alt="Supermarket selfie" loading="lazy"><span class="tag">Supermarket dates</span></figure>
+      </div>
+    </section>
+
+    <!-- Page V -->
+    <section class="page">
+      <div class="ph rv">
+        <span class="num">Page V</span>
+        <h2>Carta <em>nights</em></h2>
+        <p>Blankets on, cards out, nobody sleeping.</p>
+      </div>
+      <div class="felt rv">
+        <div class="pcard big">
+          <span class="idx tl">A<b>♥</b></span>
+          <div class="ph-in"><img src="p/cards1.jpg" alt="Playing cards on the bed" loading="lazy"></div>
+          <span class="idx br">A<b>♥</b></span>
+        </div>
+        <div class="hand">
+          <div class="pcard black">
+            <span class="idx tl">K<b>♠</b></span>
+            <div class="ph-in">
+              <video src="v/IMG_2900.mp4" poster="v/IMG_2900.jpg" playsinline preload="none"></video>
+              <button class="play" aria-label="Play card game video 1"><span></span></button>
+            </div>
+            <span class="idx br">K<b>♠</b></span>
+          </div>
+          <div class="pcard">
+            <span class="idx tl">Q<b>♦</b></span>
+            <div class="ph-in">
+              <video src="v/IMG_3479.mp4" poster="v/IMG_3479.jpg" playsinline preload="none"></video>
+              <button class="play" aria-label="Play card game video 2"><span></span></button>
+            </div>
+            <span class="idx br">Q<b>♦</b></span>
+          </div>
+        </div>
+        <p class="cap">Somebody always cheated. I am not saying who.</p>
+      </div>
+    </section>
+
+    <!-- Page VI -->
+    <section class="page food">
+      <div class="ph rv">
+        <span class="num">Page VI</span>
+        <h2>Eating <em>out</em></h2>
+        <p>Injera, gursha, noodles, and every plate photographed before we ate.</p>
+      </div>
+      <div class="gursha rv"><img src="p/gursha.jpg" alt="Bemni giving Bereket gursha at an Ethiopian restaurant" loading="lazy"></div>
+      <div class="plates">
+        <div class="plate rv"><img src="p/food1.jpg" alt="Ethiopian dinner together" loading="lazy"></div>
+        <div class="plate rv"><img src="p/dinner.jpg" alt="Bemni smiling over dinner" loading="lazy"></div>
+        <div class="plate rv"><img src="p/food3.jpg" alt="Laughing over injera" loading="lazy"></div>
+      </div>
+      <p class="cap">Gursha: feeding someone with your own hand. The Ethiopian way to say "I love you".</p>
+    </section>
+
+    <!-- Chef -->
+    <section class="page chef">
+      <div class="ph rv">
+        <span class="num">Page VII</span>
+        <h2>Chef <em>Bemni</em></h2>
+        <p>Our kitchen in Köln was the best restaurant in the city.</p>
+      </div>
+      <div class="menu rv">
+        <img class="feast" src="p/chef-feast.jpg" alt="A big Ethiopian feast with candles that Bemni cooked" loading="lazy">
+        <div class="mh"><span class="s">Bemni's Kitchen</span><span class="k">Köln · Open every day</span></div>
+        <ul>
+          <li><div class="t">Doro wot<small>with eggs, for the big days</small></div><span></span><i>♥</i></li>
+          <li><div class="t">Kitfo, ayib &amp; gomen</div><span></span><i>♥</i></li>
+          <li><div class="t">Tibs<small>onions and green pepper</small></div><span></span><i>♥</i></li>
+          <li><div class="t">Homemade pizza<small>the whole tray</small></div><span></span><i>♥</i></li>
+          <li><div class="t">Burgers &amp; chicken with yellow rice</div><span></span><i>♥</i></li>
+        </ul>
+        <div class="sp"><b>Dessert</b>Whatever Bemni baked that day</div>
+      </div>
+      <div class="dishes">
+        <figure class="rv"><img src="p/chef-doro.jpg" alt="Doro wot and tibs with injera" loading="lazy"><figcaption>Doro wot</figcaption></figure>
+        <figure class="rv"><img src="p/chef-kitfo.jpg" alt="Kitfo, ayib and gomen on injera" loading="lazy"><figcaption>Kitfo</figcaption></figure>
+        <figure class="rv"><img src="p/chef-xmas.jpg" alt="Christmas table with Ethiopian food" loading="lazy"><figcaption>Christmas table</figcaption></figure>
+        <figure class="rv"><img src="p/chef-pizza.jpg" alt="Homemade pizza on a tray" loading="lazy"><figcaption>Pizza night</figcaption></figure>
+        <figure class="rv"><img src="p/chef-tibs.jpg" alt="Tibs and salad on injera" loading="lazy"><figcaption>Tibs</figcaption></figure>
+        <figure class="rv"><img src="p/chef-dough.jpg" alt="Fried dough snacks" loading="lazy"><figcaption>Fresh from the pan</figcaption></figure>
+        <figure class="rv"><img src="p/chef-burger.jpg" alt="Homemade burgers" loading="lazy"><figcaption>Burgers</figcaption></figure>
+        <figure class="rv"><img src="p/chef-chicken.jpg" alt="Chicken with yellow rice and salad" loading="lazy"><figcaption>Chicken &amp; rice</figcaption></figure>
+        <figure class="rv"><img src="p/chef-tiramisu.jpg" alt="Tiramisu" loading="lazy"><figcaption>Tiramisu</figcaption></figure>
+      </div>
+      <p class="cap">I miss your food. And I really miss your baking.</p>
+    </section>
+
+    <!-- Page VII -->
+    <section class="page">
+      <div class="ph rv">
+        <span class="num">Page VIII</span>
+        <h2>Christmas <em>in</em> Köln</h2>
+        <p>Church candles, the Weihnachtsmarkt and lights in every tree.</p>
+      </div>
+      <div class="xmas">
+        <figure class="w rv"><img src="p/xmas-church.jpg" alt="Christmas service in a Köln church" loading="lazy"></figure>
+        <figure class="t rv"><img src="p/xmas-market.jpg" alt="Christmas market selfie" loading="lazy"></figure>
+        <figure class="t rv"><img src="p/xmas-lights.jpg" alt="Under the Christmas lights" loading="lazy" style="object-position:62% 50%"></figure>
+        <div class="twinkle" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Page VIII -->
+    <section class="page">
+      <div class="ph rv">
+        <span class="num">Page IX</span>
+        <h2>The <em>funny</em> corner</h2>
+        <p>Evidence. Tap them.</p>
+      </div>
+      <div class="line">
+        <div class="pegs">
+          <figure class="peg"><img src="p/mask.jpg" alt="Face mask night" loading="lazy"><figcaption>Spa night</figcaption></figure>
+          <figure class="peg"><img src="p/peace.jpg" alt="Peace sign selfie" loading="lazy"><figcaption>Peace ✌</figcaption></figure>
+          <figure class="peg"><img src="p/cards2.jpg" alt="Card game on the bed" loading="lazy" style="object-position:30% 50%"><figcaption>Poker face</figcaption></figure>
+          <figure class="peg"><img src="p/night3.jpg" alt="Night photo together" loading="lazy" style="object-position:50% 70%"><figcaption>Night out</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page IX -->
+    <section class="page">
+      <div class="ph rv">
+        <span class="num">Page X</span>
+        <h2>Our <em>people</em></h2>
+        <p>Friends who became family, and Dad, always one video call away.</p>
+      </div>
+      <div class="people">
+        <figure class="a rv"><img src="p/four.jpg" alt="Four friends on an autumn street" loading="lazy"></figure>
+        <figure class="b rv"><img src="p/zebra2.jpg" alt="Bemni with a friend" loading="lazy"></figure>
+        <figure class="b rv"><img src="p/friend-night.jpg" alt="Bemni with a friend at night" loading="lazy"></figure>
+        <figure class="c rv"><img src="p/girls2.jpg" alt="Bemni laughing with friends" loading="lazy" style="object-position:58% 50%"></figure>
+        <figure class="c rv"><img src="p/dad1.jpg" alt="Video call with Dad" loading="lazy" style="object-position:50% 30%"><span class="tag">Dad</span></figure>
+        <figure class="c rv"><img src="p/xmas-church2.jpg" alt="Friends at church" loading="lazy" style="object-position:40% 50%"></figure>
+      </div>
+    </section>
+
+    <!-- 27th -->
+    <section class="page">
+      <div class="ph rv">
+        <span class="num">Page XI</span>
+        <h2>Your <em>27th</em> in Köln</h2>
+        <p>Cheesecake, four little cat candles and silver balloons.</p>
+      </div>
+      <div class="b27">
+        <figure class="main rv"><img src="p/b27-her.jpg" alt="Bemni holding her birthday cheesecake with cat candles" loading="lazy"></figure>
+        <figure class="s rv"><img src="p/b27-balloons.jpg" alt="Silver 27 balloons with gold balloons" loading="lazy" style="object-position:50% 40%"></figure>
+        <figure class="s rv"><img src="p/b27-cake.jpg" alt="Cheesecake with cat candles" loading="lazy" style="object-position:50% 40%"></figure>
+      </div>
+      <p class="cap" style="margin-top:14px">Two more candles this year.</p>
+    </section>
+
+    <!-- Page X -->
+    <section class="page last">
+      <div class="ph rv">
+        <span class="num">Page XII</span>
+        <h2>Our last <em>days</em></h2>
+        <p>One last cake in Köln. A sweet ending to a beautiful year.</p>
+      </div>
+      <div class="filmbox">
+      <div class="sprk t" aria-hidden="true"></div>
+      <div class="film" tabindex="0" aria-label="Last days in Köln, swipe sideways">
+        <figure class="fr"><img src="p/cake3.jpg" alt="The last cake in Köln" loading="lazy"></figure>
+        <figure class="fr"><img src="p/cake1.jpg" alt="Bemni with the cake" loading="lazy"></figure>
+        <figure class="fr"><img src="p/cake2.jpg" alt="Bemni photographing the cake" loading="lazy"></figure>
+      </div>
+      <div class="sprk b" aria-hidden="true"></div>
+      </div>
+      <p class="cap">Of course the cake got its photoshoot first.</p>
+    </section>
+
+    <!-- Wishes -->
+    <section class="page" id="wishes">
+      <div class="tilet" style="margin-bottom:34px"></div>
+      <div class="ph rv">
+        <span class="num">The last page</span>
+        <h2>Make a <em>wish</em></h2>
+        <p>Blow out the candles. These are my wishes for your new year.</p>
+      </div>
+      <div class="cake-wrap">
+        <div class="cake" id="cake" aria-hidden="true">
+          <div class="candle"><div class="flame"></div><div class="smoke"></div></div>
+          <div class="candle"><div class="flame"></div><div class="smoke"></div></div>
+          <div class="candle"><div class="flame"></div><div class="smoke"></div></div>
+          <div class="tier t2"></div>
+          <div class="tier t1"></div>
+        </div>
+        <button class="blow" id="blow">Blow the candles</button>
+      </div>
+      <div class="wishes">
+        <article class="wish"><svg viewBox="0 0 24 24"><path d="M12 2v20M5 8h14"/><circle cx="12" cy="2.6" r=".6"/><path d="M9 21h6"/></svg><h3>God's blessing</h3><p>May God bless every step you take in this new year.</p></article>
+        <article class="wish"><svg viewBox="0 0 24 24"><circle cx="8.5" cy="6.5" r="2.6"/><circle cx="16.5" cy="9" r="2"/><path d="M3.5 20c0-4.2 2.3-7.4 5-7.4s5 3.2 5 7.4M13 20c0-3.1 1.6-5.4 3.5-5.4S20 16.9 20 20"/></svg><h3>Beautiful children</h3><p>A happy home full of love, laughter and healthy little ones.</p></article>
+        <article class="wish"><svg viewBox="0 0 24 24"><path d="M3 20h5v-5h5v-5h5V5h3"/><path d="M15 5h6v6"/></svg><h3>A higher position</h3><p>The promotion you deserve, and growth at work every year.</p></article>
+        <article class="wish"><svg viewBox="0 0 24 24"><path d="M3 16.5V12l2.2-5h13.6L21 12v4.5z"/><path d="M3 12h18"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/></svg><h3>Your first car</h3><p>Your first car very soon. Then one day, the dream car.</p></article>
+        <article class="wish"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M10 20v-5h4v5"/></svg><h3>Your dream house</h3><p>The house you dream about, with a guest room for your little brother.</p></article>
+        <article class="wish"><svg viewBox="0 0 24 24"><circle cx="9" cy="13" r="5"/><circle cx="15" cy="13" r="5"/><path d="M12 4l1.5 2h-3z"/></svg><h3>A strong marriage</h3><p>Love, peace and patience at home, stronger every year.</p></article>
+        <article class="wish"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.2a4.2 4.2 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/></svg><h3>Good health</h3><p>Strong health and a long life, for many more birthdays.</p></article>
+        <article class="wish"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg><h3>Joy every day</h3><p>More laughing, more trips, more cake. Always more cake.</p></article>
+      </div>
+    </section>
+
+    <!-- Letter -->
+    <section class="page">
+      <div class="letter rv">
+        <p class="hi">Dear Bemni,</p>
+        <p>For one year we lived together in Köln. Card games on the bed, face masks, Christmas lights, your amazing food, and that last cake in our final days there. That year is one of my favourite memories. I miss your cooking, and I really miss your baking.</p>
+        <p>You were my sister, my friend and my home in Germany. Thank you for everything you did for me.</p>
+        <p>Today I pray for the best things in your life: happiness, good health, a beautiful family, your dream job, your dream car and your dream house. You deserve all of it.</p>
+        <p>Happy 29th birthday.</p>
+        <p class="am" lang="am">እንኳን ተወለድሽ! እግዚአብሔር ይባርክሽ።</p>
+        <p class="tr">So glad you were born! May God bless you.</p>
+        <p class="sign">Bereket<small>your little brother</small></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="wrap">
+  <div class="tilet"></div>
+  <p class="n">Bemni</p>
+  <p class="d">KÖLN · ONE YEAR · FOREVER FAMILY</p>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* confetti */
+  var cv = document.getElementById('confetti'), ctx = cv.getContext('2d'), parts = [], running = false;
+  function size(){ var d = window.devicePixelRatio || 1; cv.width = innerWidth * d; cv.height = innerHeight * d; ctx.setTransform(d,0,0,d,0,0); }
+  size(); addEventListener('resize', size);
+  var cols = ['#ecd08a','#c9a24a','#f4e8d4','#e08a9a','#fff3c4'];
+  function burst(n, y){
+    if (reduce) return;
+    for (var i = 0; i < n; i++) parts.push({
+      x: innerWidth/2 + (Math.random()-.5)*innerWidth*.6, y: y == null ? -20 - Math.random()*innerHeight*.4 : y,
+      vx: (Math.random()-.5)*3, vy: y == null ? 1.5 + Math.random()*2.5 : -6 - Math.random()*7,
+      w: 5 + Math.random()*6, h: 8 + Math.random()*8, r: Math.random()*6, vr: (Math.random()-.5)*.25,
+      c: cols[(Math.random()*cols.length)|0], life: 0
+    });
+    if (!running){ running = true; requestAnimationFrame(tick); }
+  }
+  function sparks(x, y, n){
+    if (reduce) return;
+    for (var i = 0; i < n; i++){ var a = Math.random()*Math.PI*2, v = 2 + Math.random()*5;
+      parts.push({x:x, y:y, vx:Math.cos(a)*v, vy:Math.sin(a)*v - 2, w:4 + Math.random()*5, h:6 + Math.random()*7, r:Math.random()*6, vr:(Math.random()-.5)*.3, c:cols[(Math.random()*cols.length)|0], life:0}); }
+    if (!running){ running = true; requestAnimationFrame(tick); }
+  }
+  function tick(){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    for (var i = parts.length-1; i >= 0; i--){
+      var p = parts[i]; p.life++; p.vy += .12; p.vx *= .99; p.x += p.vx + Math.sin(p.life/12)*.6; p.y += p.vy; p.r += p.vr;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+      ctx.fillRect(-p.w/2, -p.h/2 * Math.abs(Math.cos(p.life/8)), p.w, p.h * Math.abs(Math.cos(p.life/8)) + 1);
+      ctx.restore();
+      if (p.y > innerHeight + 40) parts.splice(i,1);
+    }
+    if (parts.length) requestAnimationFrame(tick); else { running = false; ctx.clearRect(0,0,innerWidth,innerHeight); }
+  }
+
+
+  /* balloons */
+  var sky = document.getElementById('sky');
+  var BC = [['#efcf78','#a77a22'],['#f7ecda','#c4ae8c'],['#efaab6','#b35a6c'],['#ddb98f','#9a7448'],['#a8405a','#5a1a2b']];
+  function balloon(delay){
+    if (reduce || sky.childElementCount > 12) return;
+    var c = BC[(Math.random()*BC.length)|0], id = 'g' + Math.random().toString(36).slice(2,8);
+    var el = document.createElement('button');
+    el.className = 'bl'; el.tabIndex = -1; el.type = 'button';
+    el.style.left = (3 + Math.random()*80) + '%';
+    el.style.width = (52 + Math.random()*30) + 'px';
+    el.style.setProperty('--dur', (8 + Math.random()*5).toFixed(1) + 's');
+    el.style.setProperty('--dx', ((Math.random()-.5)*90).toFixed(0) + 'px');
+    el.style.animationDelay = (delay||0) + 's';
+    el.innerHTML = '<span class="sw"><svg viewBox="0 0 60 112"><defs><radialGradient id="'+id+'" cx="34%" cy="28%" r="78%"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".22" stop-color="'+c[0]+'"/><stop offset="1" stop-color="'+c[1]+'"/></radialGradient></defs><path d="M30 2C14 2 3 15 3 31c0 18 15 33 27 37 12-4 27-19 27-37C57 15 46 2 30 2z" fill="url(#'+id+')"/><path d="M26 68l4 6 4-6z" fill="'+c[1]+'"/><path d="M30 74c-6 8 6 14 0 22s5 10 0 14" fill="none" stroke="rgba(244,232,212,.6)" stroke-width="1.2"/></svg></span>';
+    el.addEventListener('click', function(){
+      var r = el.getBoundingClientRect();
+      el.style.transform = getComputedStyle(el).transform; el.style.animation = 'none';
+      el.classList.add('popped');
+      sparks(r.left + r.width/2, r.top + r.width*.55, 40);
+      setTimeout(function(){ el.remove(); }, 220);
+    });
+    el.addEventListener('animationend', function(e){ if (e.target === el) el.remove(); });
+    sky.appendChild(el);
+  }
+  function release(n, spread){ for (var i = 0; i < n; i++) balloon(Math.random()*(spread||1.4)); }
+  if ('IntersectionObserver' in window){
+    var seen = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting && opened){ release(2 + ((Math.random()*2)|0)); seen.unobserve(e.target); } }); }, {threshold:.25});
+    document.querySelectorAll('.page').forEach(function(p){ seen.observe(p); });
+  }
+
+  /* song + lyrics */
+  var song = document.getElementById('song'), player = document.getElementById('player'), playBtn = document.getElementById('playBtn'), lyric = document.getElementById('lyric');
+  var LY = [[1.55, 4.96, "Happy birthday to you"], [4.91, 8.32, "Happy birthday to you"], [8.27, 11.68, "Happy birthday, dear Bemni"], [11.63, 15.6, "Happy birthday to you"], [16.67, 20.08, "Happy birthday to you"], [20.03, 23.44, "Happy birthday to you"], [23.39, 26.8, "Happy birthday, dear Bemni"], [26.75, 30.72, "Happy birthday to you"]];
+  var idle = 'Happy birthday, Bemni', cur = null;
+  function tickLyric(){
+    var t = song.currentTime, txt = idle;
+    for (var i = 0; i < LY.length; i++) if (t >= LY[i][0] && t < LY[i][1]) { txt = LY[i][2]; break; }
+    if (txt !== cur){ cur = txt; lyric.textContent = txt; lyric.classList.toggle('dim', txt === idle); }
+  }
+  setInterval(function(){ if (!song.paused) tickLyric(); }, 150);
+  function sync(){ var on = !song.paused; player.classList.toggle('on', on); playBtn.setAttribute('aria-label', on ? 'Pause the birthday song' : 'Play the birthday song'); }
+  song.addEventListener('play', sync); song.addEventListener('pause', sync);
+  playBtn.addEventListener('click', function(){ if (song.paused){ var p = song.play(); if (p && p.catch) p.catch(function(){}); } else song.pause(); });
+  var resumeAfter = false;
+  document.querySelectorAll('video').forEach(function(v){
+    v.addEventListener('play', function(){ if (!song.paused){ resumeAfter = true; song.pause(); } });
+    v.addEventListener('ended', function(){ if (resumeAfter){ resumeAfter = false; song.play().catch(function(){}); } });
+  });
+
+  /* cover */
+  var opened = false;
+  var cover = document.getElementById('cover');
+  document.getElementById('openBtn').addEventListener('click', function(){
+    opened = true;
+    var p = song.play(); if (p && p.catch) p.catch(function(){});
+    player.hidden = false;
+    cover.classList.add('gone');
+    release(9, 2.2);
+    setTimeout(function(){ cover.hidden = true; }, 950);
+    burst(170);
+    setTimeout(function(){ burst(90); }, 700);
+  });
+
+  /* reveal */
+  var rv = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(function(el){ io.observe(el); });
+  } else rv.forEach(function(el){ el.classList.add('in'); });
+
+  /* polaroids lift, pegs swing */
+  document.querySelectorAll('.pol').forEach(function(p){ p.addEventListener('click', function(){ p.classList.toggle('lift'); }); });
+  document.querySelectorAll('.peg').forEach(function(p){ p.addEventListener('click', function(){ p.classList.remove('swing'); void p.offsetWidth; p.classList.add('swing'); }); });
+
+  /* videos */
+  document.querySelectorAll('.play').forEach(function(b){
+    b.addEventListener('click', function(){
+      var v = b.previousElementSibling;
+      document.querySelectorAll('video').forEach(function(o){ if (o !== v) o.pause(); });
+      v.controls = true; b.hidden = true;
+      var pr = v.play(); if (pr && pr.catch) pr.catch(function(){});
+    });
+  });
+
+  /* candles */
+  var cake = document.getElementById('cake'), blow = document.getElementById('blow');
+  blow.addEventListener('click', function(){
+    if (cake.classList.contains('out')){ cake.classList.remove('out'); blow.textContent = 'Blow the candles'; document.querySelectorAll('.wish').forEach(function(w){ w.classList.remove('lit'); }); return; }
+    cake.classList.add('out');
+    blow.textContent = 'Light them again';
+    burst(120, innerHeight + 10);
+    release(10, 1.8);
+    document.querySelectorAll('.wish').forEach(function(w, i){ setTimeout(function(){ w.classList.add('lit'); }, reduce ? 0 : 250 + i*220); });
+  });
+})();
+</script>
+
+</body>
+</html>
